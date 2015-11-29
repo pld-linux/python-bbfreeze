@@ -13,7 +13,7 @@ URL:		http://pypi.python.org/pypi/bbfreeze
 BuildRequires:	python-devel
 BuildRequires:	rpm-pythonprov
 # if py_postclean is used
-BuildRequires:	rpmbuild(macros) >= 1.219
+BuildRequires:	rpmbuild(macros) >= 1.710
 BuildRequires:	unzip
 Requires:	python-modules
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
