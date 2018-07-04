@@ -3,12 +3,12 @@
 %define 	module	bbfreeze
 Summary:	Creates stand-alone executables from python scripts
 Name:		python-%{module}
-Version:	1.0.2
+Version:	1.1.3
 Release:	1
 License:	zlib/libpng
 Group:		Development/Languages/Python
-Source0:	http://pypi.python.org/packages/source/b/bbfreeze/bbfreeze-%{version}.zip
-# Source0-md5:	53e74d5ae352541732ef2987ad1f68a6
+Source0:	http://pypi.debian.net/bbfreeze/bbfreeze-%{version}.zip
+# Source0-md5:	5c7bf32800376f1a1305176ad396feba
 URL:		http://pypi.python.org/pypi/bbfreeze
 BuildRequires:	python-devel
 BuildRequires:	rpm-pythonprov
@@ -16,6 +16,7 @@ BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.710
 BuildRequires:	unzip
 Requires:	python-modules
+BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -36,8 +37,8 @@ rm -rf $RPM_BUILD_ROOT
 
 %py_install
 
-%py_ocomp $RPM_BUILD_ROOT%{py_sitedir}
-%py_comp $RPM_BUILD_ROOT%{py_sitedir}
+%py_ocomp $RPM_BUILD_ROOT%{py_sitescriptdir}
+%py_comp $RPM_BUILD_ROOT%{py_sitescriptdir}
 %py_postclean
 
 %clean
@@ -47,11 +48,10 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/bb-freeze
 
-%dir %{py_sitedir}/%{module}
-%{py_sitedir}/%{module}/*.py[co]
-%attr(755,root,root) %{py_sitedir}/%{module}/console.exe
-%dir %{py_sitedir}/%{module}/modulegraph
-%{py_sitedir}/%{module}/modulegraph/*.py[co]
+%dir %{py_sitescriptdir}/%{module}
+%{py_sitescriptdir}/%{module}/*.py[co]
+%dir %{py_sitescriptdir}/%{module}/modulegraph
+%{py_sitescriptdir}/%{module}/modulegraph/*.py[co]
 %if "%{py_ver}" > "2.4"
-%{py_sitedir}/%{module}*.egg-info
+%{py_sitescriptdir}/%{module}*.egg-info
 %endif
